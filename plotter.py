@@ -89,7 +89,7 @@ class Plotter:
 
         (target, absdir, left, right) = result
 
-        cv2.line(img, (int(width/2), height-1), (target[1], target[0]), (0, 0, 255), thickness=2) # direction
+        cv2.line(img, (int(width/2), height-1), (target[1], target[0]), (0, 0, 255), thickness=4) # direction
         cv2.line(img, (int(width/2), height-1), (int(width/2), 0), (255, 0, 0), thickness=1) # mid        
 
         cv2.rectangle(img, (-5, left-5), (5, left+5), (0,255,255))

@@ -30,15 +30,15 @@ class Scanner:
 
         target = None
         absdir = None
-        if left > right:
-            target = (right, self.width)
-            absdir = 1
-        elif right > left:
-            target = (left, 0)
-            absdir = -1
-        else:
+        if abs(left-right) < 8:
             target = (0, int(self.width /2))
             absdir = 0
+        elif left > right: # go right
+            target = (right, self.width)
+            absdir = 1
+        elif right > left: # go left
+            target = (left, 0)
+            absdir = -1            
 
         return (target, absdir, left, right)
 

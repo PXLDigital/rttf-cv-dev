@@ -26,7 +26,7 @@ def on_close(sig, frame):
 if __name__ == "__main__":
     app = QApplication([])
 
-    win = MainWindow("Duck Trails")
+    win = MainWindow("RTTF Trainer")
     win.show()
 
     signal.signal(signal.SIGINT, on_close)

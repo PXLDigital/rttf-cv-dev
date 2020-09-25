@@ -36,6 +36,10 @@ class MainWindow(QWidget):
         self.btn_image_resume = QPushButton('Resume')
         self.btn_image_resume.clicked.connect(self.resume)
         self.buttons.addWidget(self.btn_image_resume)
+
+        self.lbl_info = QLabel('')
+        self.filterview.set_info_label(self.lbl_info)
+        self.buttons.addWidget(self.lbl_info)
         
         self.setLayout(self.mainlayout)
 

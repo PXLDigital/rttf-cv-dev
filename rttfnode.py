@@ -12,6 +12,9 @@ from sensor_msgs.msg import CompressedImage
 
 from scanner import Scanner
 
+import config as cfg
+import masks as masks
+
 class DrivingModule:
     def __init__(self):
         self.vehicle_name = rospy.get_param("~veh", "edgecar")
@@ -46,16 +49,18 @@ def start_using_ai(self, data):
 def process_img(self, data):
     if data:
         try:
-            DEFAULT_ANGLE = 0.3
-            DEFAULT_THROTTLE = 0.2
+            angle = cfg.MAX_ANGLE
+            throttle = cfg.MAX_THROTTLE
 
             img = self.bridge.compressed_imgmsg_to_cv2(data)
             hsv_data = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
 
             mask = None
             image_result = None
-            mask = cv2.inRange(hsv_data, np.array([0,100,50]), np.array([10,255,255]))
-            mask2 = cv2.inRange(hsv_data, np.array([170,100,50]), np.array([180,255,255]))
+
+            mask_bounds = masks.limits[cfg.LOCATION]
+            mask = cv2.inRange(hsv_data, np.array(mask_bounds[0][0]), np.array(mask_bounds[0][1]))
+            mask2 = cv2.inRange(hsv_data, np.array(mask_bounds[1][0]), np.array(mask_bounds[1][1]))
             total_mask = mask | mask2
             total_mask = cv2.erode(total_mask, (3, 3), 2)
             total_mask = cv2.dilate(total_mask, (3, 3), 2)
@@ -68,8 +73,8 @@ def process_img(self, data):
             (target, absdir, left, right) = self.scanner.direction_exp()
             #p = Plotter.plot_direction_exp(image_result, d)
 
-            angle = DEFAULT_ANGLE * absdir
-            throttle = DEFAULT_THROTTLE
+            angle = angle * absdir
+            throttle = throttle
 
             self.wheels_cmd.header.stamp = data.header.stamp
             self.wheels_cmd.velocity = throttle
