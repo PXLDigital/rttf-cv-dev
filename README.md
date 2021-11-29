@@ -1,5 +1,7 @@
 # RTTF_CV
-RTTF car AI purely based on Computer Vision (no Machine Learning)
+RTTF car - simple example AI purely based on Computer Vision (no Machine Learning)
+
+Adjust to create your own algorithm & replace file on the car. View [RTTF drivingmodule](https://github.com/SamVanderstraeten/RTTF_drivingmodule_CV) for cleaned up example.
 
 To run: ```python3 centerboy.py```
 
