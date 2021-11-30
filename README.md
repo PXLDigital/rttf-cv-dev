@@ -1,4 +1,4 @@
-# RTTF_CV
+# RTTF CV dev
 RTTF car - simple example AI purely based on Computer Vision (no Machine Learning)
 
 UI windows included to visualize output.
