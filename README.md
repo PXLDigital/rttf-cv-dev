@@ -1,5 +1,6 @@
 # RTTF CV dev
 RTTF car - simple example AI purely based on Computer Vision (no Machine Learning)
+Uses local rosbag recordings for easy development.
 
 UI windows included to visualize output.
 
